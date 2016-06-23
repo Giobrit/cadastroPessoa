@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.glassfish.hk2:guice-bridge:2.4.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/guice-bridge/2.4.0/2a587573ba69cb7c51c707bba63e8a9555b32a46/guice-bridge-2.4.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/guice-bridge/2.4.0/31e85c365190fe704c3b63e5e37d5efc46babffb/guice-bridge-2.4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PessoaBase.iml" filepath="$PROJECT_DIR$/PessoaBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pessoabase.iml" filepath="$PROJECT_DIR$/.idea/modules/pessoabase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pessoabase_main.iml" filepath="$PROJECT_DIR$/.idea/modules/pessoabase_main.iml" group="pessoabase" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pessoabase_test.iml" filepath="$PROJECT_DIR$/.idea/modules/pessoabase_test.iml" group="pessoabase" />
+    </modules>
+  </component>
+</project>
