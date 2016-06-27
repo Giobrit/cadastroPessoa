@@ -13,11 +13,11 @@ public class CaracteristicaService {
 	@Inject
 	private CaracteristicaDAOInterface caracteristicaDAO;
 
-	public void gravarPessoa(Caracteristica caracteristica) {
-		caracteristicaDAO.gravarCaracteristica(caracteristica);
+	public Caracteristica gravarCaracteristica(Caracteristica caracteristica) {
+		return caracteristicaDAO.gravarCaracteristica(caracteristica);
 	}
 
-	public List<Caracteristica> retornarFisicaCaracteristica() {
+	public List<Caracteristica> retornarCaracteristicas() {
 		return caracteristicaDAO.retornarCaracteristicas();
 	}
 
@@ -32,8 +32,8 @@ public class CaracteristicaService {
 	public List<Caracteristica> buscarCategoria(Caracteristica categoria) {
 		return caracteristicaDAO.buscarCaracteristica(categoria);
 	}
-	public void alterarPessoa(Caracteristica caracteristica) {
-		caracteristicaDAO.alterarCaracteristica(caracteristica);
+	public Caracteristica alterarCaracteristica(Caracteristica caracteristica) {
+		return caracteristicaDAO.alterarCaracteristica(caracteristica);
 	}
 
 }

@@ -6,12 +6,11 @@ import com.base.pessoa.entity.Pessoa;
 
 public interface PessoaDAOInterface{
 
-	void gravarPessoa(Pessoa pessoa);
+	Pessoa gravarPessoa(Pessoa pessoa);
 	List<Pessoa> retornarPessoas();
 	Pessoa buscarPessoa(Long id);
-	List<Pessoa> buscarPessoas(Pessoa pessoa);
 	void excluirPessoa(Long id);
-	void alterarPessoa(Pessoa pessoa);
+	Pessoa alterarPessoa(Pessoa pessoa);
 	
 	
 }

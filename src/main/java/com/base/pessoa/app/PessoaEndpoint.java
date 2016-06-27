@@ -3,13 +3,7 @@ package com.base.pessoa.app;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import com.base.pessoa.entity.Caracteristica;
@@ -17,43 +11,42 @@ import com.base.pessoa.entity.Pessoa;
 import com.base.pessoa.service.CaracteristicaService;
 import com.base.pessoa.service.PessoaService;
 
-@Path("/")
+@Path("/pessoa")
 public class PessoaEndpoint {
 
-	@Inject
-	private PessoaService pessoaService;
-	
-	@Inject
-	private CaracteristicaService caracteristicaService;
+    @Inject
+    private PessoaService pessoaService;
 
-	@Path("/pessoa/retornarPessoas")
+    @Inject
+    private CaracteristicaService caracteristicaService;
+
+
     @GET @Produces({MediaType.APPLICATION_JSON})
     public List<Pessoa> retornarPessoas() {
-		return pessoaService.retornarPessoas();
-	}
+        return pessoaService.retornarPessoas();
+    }
 
-	@Path("/pessoa/gravarPessoa")
-    @POST @Consumes({MediaType.APPLICATION_JSON})
-    public void gravarPessoa(Pessoa pessoa) {
-		pessoaService.gravarPessoa(pessoa);
-	}
-	
-	@Path("/pessoa/alterarPessoa")
-    @PUT @Consumes({MediaType.APPLICATION_JSON})
-    public void alterarPessoa(Pessoa pessoa) {
-		pessoaService.alterarPessoa(pessoa);
-	}
+    @POST @Consumes({MediaType.APPLICATION_JSON})  @Produces({MediaType.APPLICATION_JSON})
+    public Pessoa gravarPessoa(Pessoa pessoa)
+    {
+      return  pessoaService.gravarPessoa(pessoa);
+    }
 
-	@Path("/pessoa/buscarPessoas")
-    @POST @Consumes({MediaType.APPLICATION_JSON}) @Produces({MediaType.APPLICATION_JSON})
-    public List<Pessoa> buscarPessoas(Pessoa pessoa) {
-		return pessoaService.buscarPessoasJuridicas(pessoa);
-	}
-	
-	@Path("/retornarCategorias")
-    @GET @Produces({MediaType.APPLICATION_JSON})
-    public List<Caracteristica> retornarCategorias() {
-		return caracteristicaService.retornarFisicaCaracteristica();
-	}
+    @Path("/{id}")
+    @PUT @Consumes({MediaType.APPLICATION_JSON})  @Produces({MediaType.APPLICATION_JSON})
+    public Pessoa alterarPessoa(Pessoa pessoa) {
+        return pessoaService.alterarPessoa(pessoa);
+    }
 
+    @Path("/{id}")
+    @GET @Consumes({MediaType.APPLICATION_JSON}) @Produces({MediaType.APPLICATION_JSON})
+    public Pessoa buscarPessoa(@PathParam("id") Long id) {
+        return pessoaService.buscarPessoa(id);
+    }
+
+    @Path("/{id}")
+    @DELETE @Consumes({MediaType.APPLICATION_JSON}) @Produces({MediaType.APPLICATION_JSON})
+    public void excluirPessoa(@PathParam("id") Long id) {
+        pessoaService.excluir(id);
+    }
 }

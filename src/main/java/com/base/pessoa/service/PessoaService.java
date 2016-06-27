@@ -9,31 +9,28 @@ import com.google.inject.Singleton;
 
 @Singleton
 public class PessoaService {
-	
-	@Inject
-	private PessoaDAO pessoaDAO;
-	
-	public void gravarPessoa(Pessoa pessoa) {
-		pessoaDAO.gravarPessoa(pessoa);	
-	}
-	
-	public List<Pessoa> retornarPessoas() {
-		return pessoaDAO.retornarPessoas();
-	}
 
-	public Pessoa buscarPessoa(Long id) {
-		return pessoaDAO.buscarPessoa(id);
-	}
+    @Inject
+    private PessoaDAO pessoaDAO;
 
-	public void excluirPessoaJuridica(Long id) {
-		pessoaDAO.excluirPessoa(id);
-	}
+    public Pessoa gravarPessoa(Pessoa pessoa) {
+        return pessoaDAO.gravarPessoa(pessoa);
+    }
 
-	public List<Pessoa> buscarPessoasJuridicas(Pessoa pessoa) {
-		return pessoaDAO.buscarPessoas(pessoa);
-	}
-	public void alterarPessoa(Pessoa pessoa) {
-		pessoaDAO.alterarPessoa(pessoa);	
-	}
+    public List<Pessoa> retornarPessoas() {
+        return pessoaDAO.retornarPessoas();
+    }
+
+    public Pessoa buscarPessoa(Long id) {
+        return pessoaDAO.buscarPessoa(id);
+    }
+
+    public void excluir(Long id) {
+        pessoaDAO.excluirPessoa(id);
+    }
+
+    public Pessoa alterarPessoa(Pessoa pessoa) {
+        return pessoaDAO.alterarPessoa(pessoa);
+    }
 
 }

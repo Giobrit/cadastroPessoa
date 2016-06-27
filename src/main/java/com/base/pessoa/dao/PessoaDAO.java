@@ -21,7 +21,7 @@ public class PessoaDAO implements PessoaDAOInterface{
 
     @Transactional
     @Override
-    public void gravarPessoa(Pessoa pessoa) {
+    public Pessoa gravarPessoa(Pessoa pessoa) {
         Set<Caracteristica> categoriasSalvas = new HashSet<>();
         for(Caracteristica categoria : pessoa.getCaracteristicas()){
             try{
@@ -38,6 +38,8 @@ public class PessoaDAO implements PessoaDAOInterface{
 
         pessoa.setCaracteristicas(categoriasSalvas);
         entityManagerP.get().persist(pessoa);
+
+        return pessoa;
     }
 
     @Transactional
@@ -61,20 +63,6 @@ public class PessoaDAO implements PessoaDAOInterface{
 
     @Transactional
     @Override
-    public List<Pessoa> buscarPessoas(Pessoa pessoa) {
-        return null; /*
-        entityManagerP.get()
-                .createQuery("SELECT p FROM Pessoa p "
-                        + "WHERE p.documentoFederal LIKE :documentoFederal "
-                        + "AND p.idPai = :idPai ",Pessoa.class)
-                .setParameter("documentoFederal", "%"+pessoa.getDocumentoFederal()+"%")
-                .setParameter("idPai",pessoa.getIdPai())
-                .getResultList();
-    */}
-
-
-    @Transactional
-    @Override
     public void excluirPessoa(Long id) {
         entityManagerP.get()
                 .createQuery("DELETE FROM Pessoa p "
@@ -85,8 +73,22 @@ public class PessoaDAO implements PessoaDAOInterface{
 
     @Transactional
     @Override
-    public void alterarPessoa(Pessoa pessoa) {
-        entityManagerP.get()
+    public Pessoa alterarPessoa(Pessoa pessoa) {
+        Set<Caracteristica> categoriasSalvas = new HashSet<>();
+        for(Caracteristica categoria : pessoa.getCaracteristicas()){
+            try{
+                Caracteristica categoriaSalva = (Caracteristica) entityManagerP.get()
+                        .createQuery("SELECT c FROM Caracteristica c WHERE c.id = :id")
+                        .setParameter("id", categoria.getId())
+                        .getSingleResult();
+                categoriasSalvas.add(categoriaSalva);
+            }catch(Exception ex){
+                entityManagerP.get().persist(categoria);
+                categoriasSalvas.add(categoria);
+            }
+        }
+
+        return entityManagerP.get()
                 .merge(pessoa);
     }
 

@@ -1,17 +1,9 @@
 package com.base.pessoa.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -21,18 +13,31 @@ public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column
-    Long id;
+    private Long id;
 
     @Column
     private String nome;
+
+    @Column
+    private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "PAI")
+    private Pessoa pai;
 
     @ManyToMany(cascade={CascadeType.PERSIST})
     @JoinTable(name="pessoas_caracteristicas",
             joinColumns={@JoinColumn(name="idPessoa")},
             inverseJoinColumns={@JoinColumn(name="id")})
-    private Set<Caracteristica> caracteristicas;
+    private Set<Caracteristica> caracteristicas = new HashSet<>();
 
     public Pessoa() {
+    }
+
+    public Pessoa(Long id, String nome, Set<Caracteristica> caracteristicas) {
+        this.id = id;
+        this.nome = nome;
+        this.caracteristicas = caracteristicas;
     }
 
     public Long getId() {
@@ -49,6 +54,22 @@ public class Pessoa {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Pessoa getPai() {
+        return pai;
+    }
+
+    public void setPai(Pessoa pai) {
+        this.pai = pai;
     }
 
     public Set<Caracteristica> getCaracteristicas() {

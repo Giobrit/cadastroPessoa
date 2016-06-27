@@ -19,6 +19,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="cadastroPessoa_main" target="1.8" />
+      <module name="cadastroPessoa_test" target="1.8" />
       <module name="pessoabase_main" target="1.8" />
       <module name="pessoabase_test" target="1.8" />
     </bytecodeTargetLevel>

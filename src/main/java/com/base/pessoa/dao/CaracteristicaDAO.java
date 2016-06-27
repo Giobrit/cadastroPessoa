@@ -17,9 +17,10 @@ public class CaracteristicaDAO implements CaracteristicaDAOInterface{
 
     @Transactional
     @Override
-    public void gravarCaracteristica(Caracteristica caracteristica) {
+    public Caracteristica gravarCaracteristica(Caracteristica caracteristica) {
         entityManagerP.get()
                 .persist(caracteristica);
+        return caracteristica;
     }
 
     @Transactional
@@ -35,7 +36,7 @@ public class CaracteristicaDAO implements CaracteristicaDAOInterface{
     public Caracteristica buscarCaracteristica(Long id) {
         return entityManagerP.get()
                 .createQuery("SELECT c FROM Caracteristica c "
-                        + "WHERE p.id = :id",Caracteristica.class)
+                        + "WHERE c.id = :id",Caracteristica.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }
@@ -62,8 +63,8 @@ public class CaracteristicaDAO implements CaracteristicaDAOInterface{
 
     @Transactional
     @Override
-    public void alterarCaracteristica(Caracteristica caracteristica) {
-        entityManagerP.get()
+    public Caracteristica alterarCaracteristica(Caracteristica caracteristica) {
+        return entityManagerP.get()
                 .merge(caracteristica);
     }
 

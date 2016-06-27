@@ -3,6 +3,7 @@ package com.base.pessoa.app;
 import javax.inject.Inject;
 import javax.ws.rs.ApplicationPath;
 
+import io.swagger.jaxrs.config.BeanConfig;
 import org.glassfish.hk2.api.ServiceLocator;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spi.AbstractContainerLifecycleListener;
@@ -22,7 +23,15 @@ public class ApplicationModel extends ResourceConfig {
     
     @Inject // Note: inject from HK2
     public void ApplicationConfig(ServiceLocator serviceLocator) {
-    	
+        BeanConfig beanConfig = new BeanConfig();
+        beanConfig.setVersion("1.0.2");
+        beanConfig.setSchemes(new String[]{"http"});
+        beanConfig.setHost("localhost:8089");
+        beanConfig.setBasePath("/rest/api");
+        beanConfig.setResourcePackage("io.swagger.resources");
+        beanConfig.setScan(true);
+
+
     	//final Logger logger = LoggerFactory.getLogger(getClass());
 
     	// Guice
